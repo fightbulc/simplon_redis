@@ -23,7 +23,7 @@
 
     "autoload": {
         "psr-0": {
-            "Simplon\\Db\\Redis": "src/"
+            "Simplon\\Redis": "src/"
         }
     }
 }
