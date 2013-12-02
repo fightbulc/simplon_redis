@@ -1,10 +1,10 @@
 <?php
 
-    namespace Simplon\Db\Redis;
+    namespace Simplon\Redis;
 
     class RedisManager
     {
-        /** @var \Simplon\Db\Redis\Redis */
+        /** @var \Simplon\Redis\Redis */
         private $_redisInstance;
 
         /** @var RedisBitCommands */
@@ -31,7 +31,7 @@
         // ######################################
 
         /**
-         * @param \Simplon\Db\Redis\Redis $redisBaseInstance
+         * @param \Simplon\Redis\Redis $redisBaseInstance
          */
         public function __construct(Redis $redisBaseInstance)
         {
@@ -41,7 +41,7 @@
         // ######################################
 
         /**
-         * @return \Simplon\Db\Redis\Redis
+         * @return \Simplon\Redis\Redis
          */
         public function getRedisInstance()
         {

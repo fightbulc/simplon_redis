@@ -1,6 +1,6 @@
 <?php
 
-    namespace Simplon\Db\Redis;
+    namespace Simplon\Redis;
 
     class Redis
     {
@@ -20,19 +20,19 @@
 
         /**
          * @param $host
-         * @param $dbId
+         * @param $databaseId
          * @param int $port
          * @param null $password
          *
          * @throws \Exception
          */
-        public function __construct($host, $dbId, $port = 6379, $password = NULL)
+        public function __construct($host, $databaseId, $port = 6379, $password = NULL)
         {
             // redis connector
             $this->_redisInstance = phpiredis_connect($host, $port);
 
             // select db
-            $this->dbSelect($dbId);
+            $this->dbSelect($databaseId);
 
             // auth
             if (!is_null($password))

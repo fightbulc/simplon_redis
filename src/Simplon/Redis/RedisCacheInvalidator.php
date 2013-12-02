@@ -1,6 +1,6 @@
 <?php
 
-    namespace Simplon\Db\Redis;
+    namespace Simplon\Redis;
 
     class RedisCacheInvalidator
     {

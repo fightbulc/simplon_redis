@@ -1,10 +1,10 @@
 <?php
 
-    namespace Simplon\Db\Redis;
+    namespace Simplon\Redis;
 
     trait RedisCommandsTrait
     {
-        /** @var \Simplon\Db\Redis\Redis */
+        /** @var \Simplon\Redis\Redis */
         protected $_redisInstance;
 
         // ######################################
