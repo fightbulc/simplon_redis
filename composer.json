@@ -1,7 +1,7 @@
 {
-    "name": "simplon/db_redis",
+    "name": "simplon/redis",
     "description": "Simplon Redis Library",
-    "homepage": "https://github.com/fightbulc/simplon_db_redis",
+    "homepage": "https://github.com/fightbulc/simplon_redis",
     "version": "0.1.0",
     "type": "library",
     "keywords": ["db", "redis", "phpiredis", "manager"],
