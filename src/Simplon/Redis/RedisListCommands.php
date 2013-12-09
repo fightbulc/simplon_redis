@@ -174,7 +174,7 @@
         {
             $response = $this
                 ->_getRedisInstance()
-                ->query($this->_getUnshiftMultiQuery($key, $values));
+                ->query($this->_getPushMultiQuery($key, $values));
 
             if ($response != FALSE)
             {
