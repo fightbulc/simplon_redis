@@ -24,10 +24,11 @@
         /**
          * @param $key
          * @param $value
+         * @param bool $expireSeconds
          *
          * @return bool|mixed
          */
-        public function unshiftValue($key, $value)
+        public function unshiftValue($key, $value, $expireSeconds = FALSE)
         {
             $response = $this
                 ->_getRedisInstance()
@@ -35,6 +36,12 @@
 
             if ($response != FALSE)
             {
+                if ($expireSeconds !== FALSE)
+                {
+                    $this->_getRedisInstance()
+                        ->keySetExpire($key, $expireSeconds);
+                }
+
                 return $response;
             }
 
@@ -46,10 +53,11 @@
         /**
          * @param $key
          * @param array $values
+         * @param bool $expireSeconds
          *
          * @return bool|mixed
          */
-        public function unshiftValueMulti($key, array $values)
+        public function unshiftValueMulti($key, array $values, $expireSeconds = FALSE)
         {
             $response = $this
                 ->_getRedisInstance()
@@ -57,6 +65,12 @@
 
             if ($response != FALSE)
             {
+                if ($expireSeconds !== FALSE)
+                {
+                    $this->_getRedisInstance()
+                        ->keySetExpire($key, $expireSeconds);
+                }
+
                 return $response;
             }
 
@@ -145,10 +159,11 @@
         /**
          * @param $key
          * @param $value
+         * @param bool $expireSeconds
          *
          * @return bool|mixed
          */
-        public function pushValue($key, $value)
+        public function pushValue($key, $value, $expireSeconds = FALSE)
         {
             $response = $this
                 ->_getRedisInstance()
@@ -156,6 +171,12 @@
 
             if ($response != FALSE)
             {
+                if ($expireSeconds !== FALSE)
+                {
+                    $this->_getRedisInstance()
+                        ->keySetExpire($key, $expireSeconds);
+                }
+
                 return $response;
             }
 
@@ -167,10 +188,11 @@
         /**
          * @param $key
          * @param array $values
+         * @param bool $expireSeconds
          *
          * @return bool|mixed
          */
-        public function pushValueMulti($key, array $values)
+        public function pushValueMulti($key, array $values, $expireSeconds = FALSE)
         {
             $response = $this
                 ->_getRedisInstance()
@@ -178,6 +200,12 @@
 
             if ($response != FALSE)
             {
+                if ($expireSeconds !== FALSE)
+                {
+                    $this->_getRedisInstance()
+                        ->keySetExpire($key, $expireSeconds);
+                }
+
                 return $response;
             }
 
