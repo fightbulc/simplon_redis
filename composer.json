@@ -2,7 +2,7 @@
     "name": "simplon/redis",
     "description": "Simplon Redis Library",
     "homepage": "https://github.com/fightbulc/simplon_redis",
-    "version": "0.1.0",
+    "version": "0.0.1",
     "type": "library",
     "keywords": ["db", "redis", "phpiredis", "manager"],
     "license": "MIT",
