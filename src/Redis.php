@@ -144,7 +144,7 @@ class Redis
 
             foreach ($cmdArgs as $arg)
             {
-                $formattedArgs[] = "'" . $arg . "'";
+                $formattedArgs[] = "'" . addslashes($arg) . "'";
             }
 
             // query redis
