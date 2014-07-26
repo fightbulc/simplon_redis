@@ -35,7 +35,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getSetKeyValueQuery($hashId, $keyId, $value));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -146,7 +146,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getKeyValueQuery($hashId, $keyId));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -181,7 +181,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getKeyValueMultiQuery($hashId, $keyIds));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -214,7 +214,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getKeysAndValuesQuery($hashId));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 $hash = [];
                 $responseLength = count($response);
@@ -291,7 +291,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getHasKeyQuery($hashId, $hashIdId));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -324,7 +324,7 @@
         {
             $response = $this->deleteKeyMulti($hashId, [$keyId]);
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -346,7 +346,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getDeleteKeyMultiQuery($hashId, $keyIds));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -379,7 +379,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getKeysQuery($hashId));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -412,7 +412,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getValuesQuery($hashId));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -445,7 +445,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getKeysCountQuery($hashId));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -480,7 +480,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getIncrementByQuery($hashId, $value));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -520,7 +520,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getDecrementByQuery($hashId, $value));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }

@@ -2,7 +2,7 @@
 
     namespace Simplon\Redis;
 
-    class RedisStringCommands
+    class RedisBitCommands
     {
         use RedisCommandsTrait;
 
@@ -10,37 +10,32 @@
 
         /**
          * @param $key
+         * @param $offset
          * @param $value
-         * @param $expire
          *
          * @return array
          */
-        protected function _getSetQuery($key, $value, $expire = -1)
+        protected function _getSetQuery($key, $offset, $value)
         {
-            if ($expire > 0)
-            {
-                return ['SETEX', $key, $expire, $value];
-            }
-
-            return ['SET', $key, $value];
+            return ['SETBIT', $key, $offset, $value];
         }
 
         // ##########################################
 
         /**
          * @param $key
+         * @param $offset
          * @param $value
-         * @param $expire
          *
          * @return bool|mixed
          */
-        public function setValue($key, $value, $expire = -1)
+        public function set($key, $offset, $value)
         {
             $response = $this
                 ->_getRedisInstance()
-                ->query($this->_getSetQuery($key, $value, $expire));
+                ->query($this->_getSetQuery($key, $offset, $value));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -51,62 +46,31 @@
         // ##########################################
 
         /**
-         * @param array $pairs
-         * @param $expire
-         *
-         * @return bool
-         */
-        public function setMulti(array $pairs, $expire = -1)
-        {
-            $this
-                ->_getRedisInstance()
-                ->pipelineEnable(TRUE);
-
-            foreach ($pairs as $key => $value)
-            {
-                $this
-                    ->_getRedisInstance()
-                    ->pipelineAddQueueItem($this->_getSetQuery($key, $value, $expire));
-            }
-
-            $response = $this
-                ->_getRedisInstance()
-                ->pipelineExecute();
-
-            if (empty($response['errors']))
-            {
-                return TRUE;
-            }
-
-            return FALSE;
-        }
-
-        // ##########################################
-
-        /**
          * @param $key
+         * @param $offset
          *
          * @return array
          */
-        protected function _getValueQuery($key)
+        protected function _getQuery($key, $offset)
         {
-            return array('GET', $key);
+            return ['GETBIT', $key, $offset];
         }
 
         // ##########################################
 
         /**
          * @param $key
+         * @param $offset
          *
          * @return bool|mixed
          */
-        public function getValue($key)
+        public function get($key, $offset)
         {
             $response = $this
                 ->_getRedisInstance()
-                ->query($this->_getValueQuery($key));
+                ->query($this->_getQuery($key, $offset));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -117,29 +81,66 @@
         // ##########################################
 
         /**
-         * @param array $keys
+         * @param $key
          *
          * @return array
          */
-        protected function _getValueMultiQuery(array $keys)
+        protected function _getAllQuery($key)
         {
-            return array_merge(['MGET'], $keys);
+            return ['GET', $key];
         }
 
         // ##########################################
 
         /**
-         * @param array $keys
+         * @param $key
          *
          * @return bool|mixed
          */
-        public function getValueMulti(array $keys)
+        public function getAll($key)
         {
             $response = $this
                 ->_getRedisInstance()
-                ->query($this->_getValueMultiQuery($keys));
+                ->query($this->_getAllQuery($key));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
+            {
+                return $response;
+            }
+
+            return FALSE;
+        }
+
+        // ##########################################
+
+        /**
+         * @param $key
+         * @param int $start
+         * @param $end
+         *
+         * @return array
+         */
+        protected function _getCountQuery($key, $start = 0, $end = -1)
+        {
+            return ['BITCOUNT', $key, $start, $end];
+        }
+
+        // ##########################################
+
+        /**
+         * @param $key
+         * @param int $start
+         * @param $end
+         *
+         * @return bool|mixed
+         */
+        public function getCount($key, $start = 0, $end = -1)
+        {
+            $response = $this
+                ->_getRedisInstance()
+                ->query($this->_getCountQuery($key, $start, $end));
+
+            if ($response !== FALSE)
             {
                 return $response;
             }

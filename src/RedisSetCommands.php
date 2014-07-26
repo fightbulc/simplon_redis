@@ -34,7 +34,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getAddMultiQuery($key, [$value]));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 if ($expireSeconds !== FALSE)
                 {
@@ -63,7 +63,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getAddMultiQuery($key, $values));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 if ($expireSeconds !== FALSE)
                 {
@@ -136,7 +136,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getCountQuery($key));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -171,7 +171,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getDifferenceMultiQuery($setKeyA, [$setKeyB]));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -193,7 +193,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getDifferenceMultiQuery($setKeyA, $setKeyN));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -230,7 +230,7 @@
                 ->_getRedisInstance()
                 ->query($this->_storeDifferenceMultiQuery($storeSetKey, $setKeyA, [$setKeyB]));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -254,7 +254,7 @@
                 ->_getRedisInstance()
                 ->query($this->_storeDifferenceMultiQuery($storeSetKey, $setKeyA, $setKeyN));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 if ($expireSeconds !== FALSE)
                 {
@@ -295,7 +295,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getIntersectionMultiQuery($setKeyA, [$setKeyB]));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -317,7 +317,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getIntersectionMultiQuery($setKeyA, $setKeyN));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -355,7 +355,7 @@
                 ->_getRedisInstance()
                 ->query($this->_storeIntersectionMultiQuery($storeSetKey, $setKeyA, [$setKeyB]));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 if ($expireSeconds !== FALSE)
                 {
@@ -385,7 +385,7 @@
                 ->_getRedisInstance()
                 ->query($this->_storeIntersectionMultiQuery($storeSetKey, $setKeyA, $setKeyN));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 if ($expireSeconds !== FALSE)
                 {
@@ -426,7 +426,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getHasValueQuery($key, $value));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -459,7 +459,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getValuesQuery($key));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -528,7 +528,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getMoveValueQuery($setKeySource, $setKeyDestination, $value));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -561,7 +561,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getPopRandomValueQuery($key));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -596,7 +596,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getRandomValuesQuery($key, $amount));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -631,7 +631,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getDeleteValueMultiQuery($key, [$value]));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -653,7 +653,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getDeleteValueMultiQuery($key, $values));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -688,7 +688,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getMergeMultiQuery($setKeyA, [$setKeyB]));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -710,7 +710,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getMergeMultiQuery($setKeyA, $setKeyN));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -746,7 +746,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getStoreMergeMultiQuery($storeKey, $mergingKeys));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 if ($expireSeconds !== FALSE)
                 {

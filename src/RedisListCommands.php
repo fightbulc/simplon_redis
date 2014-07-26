@@ -34,7 +34,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getUnshiftMultiQuery($key, [$value]));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 if ($expireSeconds !== FALSE)
                 {
@@ -63,7 +63,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getUnshiftMultiQuery($key, $values));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 if ($expireSeconds !== FALSE)
                 {
@@ -101,7 +101,7 @@
                 ->_getRedisInstance()
                 ->pipelineExecute();
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -133,7 +133,7 @@
                 ->_getRedisInstance()
                 ->pipelineExecute();
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -169,7 +169,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getPushMultiQuery($key, [$value]));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 if ($expireSeconds !== FALSE)
                 {
@@ -198,7 +198,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getPushMultiQuery($key, $values));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 if ($expireSeconds !== FALSE)
                 {
@@ -236,7 +236,7 @@
                 ->_getRedisInstance()
                 ->pipelineExecute();
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -268,7 +268,7 @@
                 ->_getRedisInstance()
                 ->pipelineExecute();
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -301,7 +301,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getShiftQuery($key));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -334,7 +334,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getPopQuery($key));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -373,7 +373,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getValuesByRangeQuery($key, $indexStart, $limit));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -409,7 +409,7 @@
                 ->_getRedisInstance()
                 ->pipelineExecute();
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -430,7 +430,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getValuesByRangeQuery($key, 0, -1));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -495,7 +495,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getCountQuery($key));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -532,7 +532,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getSetAtIndexQuery($key, $index, $value));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -567,7 +567,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getByIndexQuery($key, $index));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -604,7 +604,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getTrimQuery($key, $index, $value));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }

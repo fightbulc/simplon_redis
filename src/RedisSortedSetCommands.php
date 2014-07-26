@@ -44,7 +44,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getAddValuesMultiQuery($key, [$scoreValuePair]));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -78,7 +78,7 @@
                 ->_getRedisInstance()
                 ->pipelineExecute();
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -100,7 +100,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getAddValuesMultiQuery($key, $scoreValuePairs));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -133,7 +133,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getCountQuery($key));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -168,7 +168,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getDeleteValueMultiQuery($key, [$value]));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -190,7 +190,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getDeleteValueMultiQuery($key, $values));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -227,7 +227,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getRangeCountQuery($key, $scoreStart, $scoreEnd));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -266,7 +266,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getValuesByRangeQuery($key, $indexStart, $limit));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -305,7 +305,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getValuesByRangeReverseQuery($key, $indexStart, $limit));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -342,7 +342,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getValuesByRangeWithScoresQuery($key, $scoreStart, $scoreEnd));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 $setWithScores = [];
                 $responseLength = count($response);
@@ -388,7 +388,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getIndexByValueQuery($key, $value));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -423,7 +423,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getIndexByValueReverseQuery($key, $value));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
@@ -458,7 +458,7 @@
                 ->_getRedisInstance()
                 ->query($this->_getScoreByValueQuery($key, $value));
 
-            if ($response != FALSE)
+            if ($response !== FALSE)
             {
                 return $response;
             }
