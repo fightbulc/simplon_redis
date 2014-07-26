@@ -98,7 +98,7 @@ class Redis
         $command = 'return redis.call(' . join(',', $formattedArgs) . ')';
         $response = $this->_getRedisInstance()->eval($command);
 
-        if ($response !== false)
+        if ($response !== false && !empty($response))
         {
             return $response;
         }
@@ -153,7 +153,7 @@ class Redis
 
             $commandString = join('-', $cmdArgs);
 
-            if ($response !== false)
+            if ($response !== false && !empty($response))
             {
                 $requestResponsesMulti['responses'][$commandString] = $response;
             }
