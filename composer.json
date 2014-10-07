@@ -3,7 +3,12 @@
     "description": "Simplon Redis Library",
     "homepage": "https://github.com/fightbulc/simplon_redis",
     "type": "library",
-    "keywords": ["db", "redis", "phpredis", "wrapper"],
+    "keywords": [
+        "db",
+        "redis",
+        "phpredis",
+        "wrapper"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -12,13 +17,10 @@
             "role": "developer"
         }
     ],
-
     "minimum-stability": "dev",
-
     "require": {
         "php": ">=5.4"
     },
-
     "autoload": {
         "psr-4": {
             "Simplon\\Redis\\": "src/"
