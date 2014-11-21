@@ -10,16 +10,6 @@ class Redis
     protected $instance;
 
     /**
-     * @var array
-     */
-    private $namespaceParams = [];
-
-    /**
-     * @var int
-     */
-    private $ttl = 0;
-
-    /**
      * @param $host
      * @param $dbIndex
      * @param int $port
@@ -58,111 +48,6 @@ class Redis
     }
 
     /**
-     * @return array
-     */
-    private function getNamespaceParams()
-    {
-        return (array)$this->namespaceParams;
-    }
-
-    /**
-     * @return bool
-     */
-    private function hasNamespaceParams()
-    {
-        return empty($this->namespaceParams) === false;
-    }
-
-    /**
-     * @param array $namespaceParams
-     *
-     * @return Redis
-     */
-    public function setNamespaceParams(array $namespaceParams)
-    {
-        $this->namespaceParams = $namespaceParams;
-
-        return $this;
-    }
-
-    /**
-     * @param $namespace
-     *
-     * @return string
-     */
-    private function getNamespaceName($namespace)
-    {
-        if ($this->hasNamespaceParams() === true)
-        {
-            foreach ($this->getNamespaceParams() as $key => $val)
-            {
-                $namespace = str_replace('{' . $key . '}', $val, $namespace);
-            }
-
-            // reset params
-            $this->setNamespaceParams([]);
-        }
-
-        return (string)$namespace;
-    }
-
-    /**
-     * @return int
-     */
-    private function getTtl()
-    {
-        return (int)$this->ttl;
-    }
-
-    /**
-     * @param int $ttl
-     *
-     * @return Redis
-     */
-    public function setTtlSeconds($ttl)
-    {
-        $this->ttl = $ttl;
-
-        return $this;
-    }
-
-    /**
-     * @param int $ttl
-     *
-     * @return Redis
-     */
-    public function setTtlMinutes($ttl)
-    {
-        $this->ttl = $ttl * 60;
-
-        return $this;
-    }
-
-    /**
-     * @param int $ttl
-     *
-     * @return Redis
-     */
-    public function setTtlHours($ttl)
-    {
-        $this->ttl = $ttl * 60 * 60;
-
-        return $this;
-    }
-
-    /**
-     * @param int $ttl
-     *
-     * @return Redis
-     */
-    public function setTtlDays($ttl)
-    {
-        $this->ttl = $ttl * 60 * 60 * 24;
-
-        return $this;
-    }
-
-    /**
      * @param string $key
      *
      * @return bool|string
@@ -171,7 +56,7 @@ class Redis
     {
         return $this
             ->getInstance()
-            ->get($this->getNamespaceName($key));
+            ->get($key);
     }
 
     /**
@@ -184,7 +69,21 @@ class Redis
     {
         return $this
             ->getInstance()
-            ->set($this->getNamespaceName($key), $value, $this->getTtl());
+            ->set($key, $value);
+    }
+
+    /**
+     * @param $key
+     * @param $value
+     * @param int $ttl
+     *
+     * @return bool
+     */
+    public function keySetEx($key, $value, $ttl = -1)
+    {
+        return $this
+            ->getInstance()
+            ->setex($key, $ttl, $value);
     }
 
     /**
@@ -196,7 +95,7 @@ class Redis
     {
         return $this
             ->getInstance()
-            ->exists($this->getNamespaceName($key));
+            ->exists($key);
     }
 
     /**
@@ -208,7 +107,7 @@ class Redis
     {
         return $this
             ->getInstance()
-            ->del($this->getNamespaceName($key)) > 0;
+            ->del($key) > 0;
     }
 
     /**
@@ -220,7 +119,20 @@ class Redis
     {
         return $this
             ->getInstance()
-            ->ttl($this->getNamespaceName($key));
+            ->ttl($key);
+    }
+
+    /**
+     * @param string $key
+     * @param int $ttl
+     *
+     * @return bool
+     */
+    public function keyExpire($key, $ttl)
+    {
+        return $this
+            ->getInstance()
+            ->expire($key, $ttl);
     }
 
     /**
@@ -228,10 +140,10 @@ class Redis
      *
      * @return bool
      */
-    public function keyExpire($key)
+    public function keyPersist($key)
     {
         return $this
             ->getInstance()
-            ->expire($this->getNamespaceName($key), $this->getTtl());
+            ->persist($key);
     }
 }
