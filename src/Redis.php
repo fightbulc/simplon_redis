@@ -2,6 +2,11 @@
 
 namespace Simplon\Redis;
 
+/**
+ * Redis
+ * @package Simplon\Redis
+ * @author  Tino Ehrich (tino@bigpun.me)
+ */
 class Redis
 {
     /**
@@ -10,9 +15,9 @@ class Redis
     protected $instance;
 
     /**
-     * @param $host
-     * @param $dbIndex
-     * @param int $port
+     * @param      $host
+     * @param      $dbIndex
+     * @param int  $port
      * @param null $password
      */
     public function __construct($host, $dbIndex, $port = 6379, $password = null)
@@ -73,8 +78,8 @@ class Redis
     }
 
     /**
-     * @param $key
-     * @param $value
+     * @param     $key
+     * @param     $value
      * @param int $ttl
      *
      * @return bool
@@ -124,7 +129,7 @@ class Redis
 
     /**
      * @param string $key
-     * @param int $ttl
+     * @param int    $ttl
      *
      * @return bool
      */
