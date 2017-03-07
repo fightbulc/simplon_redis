@@ -10,34 +10,38 @@ namespace Simplon\Redis;
 class Redis
 {
     /**
+     * @var string
+     */
+    private $host;
+    /**
+     * @var int
+     */
+    private $dbIndex;
+    /**
+     * @var int
+     */
+    private $port;
+    /**
+     * @var null|string
+     */
+    private $password;
+    /**
      * @var \Redis
      */
-    protected $instance;
+    private $instance;
 
     /**
-     * @param      $host
-     * @param      $dbIndex
-     * @param int  $port
-     * @param null $password
+     * @param string $host
+     * @param int $dbIndex
+     * @param int $port
+     * @param null|string $password
      */
-    public function __construct($host, $dbIndex, $port = 6379, $password = null)
+    public function __construct(string $host, int $dbIndex, int $port = 6379, ?string $password = null)
     {
-        // set object
-        $this->instance = new \Redis();
-
-        // connect
-        $this->instance->connect($host, $port);
-
-        // select db
-        $this->selectDb($dbIndex);
-    }
-
-    /**
-     * @return \Redis
-     */
-    private function getInstance()
-    {
-        return $this->instance;
+        $this->host = $host;
+        $this->dbIndex = $dbIndex;
+        $this->port = $port;
+        $this->password = $password;
     }
 
     /**
@@ -45,7 +49,7 @@ class Redis
      *
      * @return Redis
      */
-    public function selectDb($dbIndex)
+    public function selectDb(int $dbIndex): self
     {
         $this->getInstance()->select($dbIndex);
 
@@ -55,13 +59,16 @@ class Redis
     /**
      * @param string $key
      *
-     * @return bool|string
+     * @return null|string
      */
-    public function keyGet($key)
+    public function keyGet(string $key): ?string
     {
-        return $this
-            ->getInstance()
-            ->get($key);
+        if ($val = $this->getInstance()->get($key))
+        {
+            return $val;
+        }
+
+        return null;
     }
 
     /**
@@ -70,25 +77,21 @@ class Redis
      *
      * @return bool
      */
-    public function keySet($key, $value)
+    public function keySet(string $key, string $value): bool
     {
-        return $this
-            ->getInstance()
-            ->set($key, $value);
+        return $this->getInstance()->set($key, $value);
     }
 
     /**
-     * @param     $key
-     * @param     $value
+     * @param string $key
+     * @param string $value
      * @param int $ttl
      *
      * @return bool
      */
-    public function keySetEx($key, $value, $ttl = -1)
+    public function keySetEx(string $key, string $value, int $ttl = -1): bool
     {
-        return $this
-            ->getInstance()
-            ->setex($key, $ttl, $value);
+        return $this->getInstance()->setex($key, $ttl, $value);
     }
 
     /**
@@ -96,11 +99,9 @@ class Redis
      *
      * @return bool
      */
-    public function keyExists($key)
+    public function keyExists(string $key): bool
     {
-        return $this
-            ->getInstance()
-            ->exists($key);
+        return $this->getInstance()->exists($key);
     }
 
     /**
@@ -108,11 +109,9 @@ class Redis
      *
      * @return bool
      */
-    public function keyDel($key)
+    public function keyDel(string $key): bool
     {
-        return $this
-            ->getInstance()
-            ->del($key) > 0;
+        return $this->getInstance()->del($key) > 0;
     }
 
     /**
@@ -120,24 +119,20 @@ class Redis
      *
      * @return int
      */
-    public function keyTtl($key)
+    public function keyTtl(string $key): int
     {
-        return $this
-            ->getInstance()
-            ->ttl($key);
+        return $this->getInstance()->ttl($key);
     }
 
     /**
      * @param string $key
-     * @param int    $ttl
+     * @param int $ttl
      *
      * @return bool
      */
-    public function keyExpire($key, $ttl)
+    public function keyExpire(string $key, int $ttl): bool
     {
-        return $this
-            ->getInstance()
-            ->expire($key, $ttl);
+        return $this->getInstance()->expire($key, $ttl);
     }
 
     /**
@@ -145,10 +140,28 @@ class Redis
      *
      * @return bool
      */
-    public function keyPersist($key)
+    public function keyPersist(string $key): bool
     {
-        return $this
-            ->getInstance()
-            ->persist($key);
+        return $this->getInstance()->persist($key);
+    }
+
+    /**
+     * @return \Redis
+     */
+    private function getInstance(): \Redis
+    {
+        if (!$this->instance)
+        {
+            // set object
+            $this->instance = new \Redis();
+
+            // connect
+            $this->instance->connect($this->host, $this->port);
+
+            // select db
+            $this->selectDb($this->dbIndex);
+        }
+
+        return $this->instance;
     }
 }

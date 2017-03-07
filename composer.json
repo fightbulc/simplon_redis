@@ -1,29 +1,29 @@
 {
-    "name": "simplon/redis",
-    "description": "Simplon Redis Library",
-    "homepage": "https://github.com/fightbulc/simplon_redis",
-    "type": "library",
-    "keywords": [
-        "db",
-        "redis",
-        "phpredis",
-        "wrapper"
-    ],
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Tino Ehrich",
-            "email": "tino@bigpun.me",
-            "role": "developer"
-        }
-    ],
-    "minimum-stability": "dev",
-    "require": {
-        "php": ">=5.4"
-    },
-    "autoload": {
-        "psr-4": {
-            "Simplon\\Redis\\": "src/"
-        }
+  "name": "simplon/redis",
+  "description": "Simplon Redis - phpredis wrapper",
+  "homepage": "https://github.com/fightbulc/simplon_redis",
+  "type": "library",
+  "keywords": [
+    "db",
+    "redis",
+    "phpredis",
+    "wrapper"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Tino Ehrich",
+      "email": "tino@bigpun.me",
+      "role": "developer"
     }
+  ],
+  "require": {
+    "php": ">=7.1",
+    "ext-redis": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Simplon\\Redis\\": "src/"
+    }
+  }
 }
