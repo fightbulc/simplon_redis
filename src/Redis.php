@@ -146,6 +146,133 @@ class Redis
     }
 
     /**
+     * @param string $key
+     * @param string $value
+     *
+     * @return int|null
+     */
+    public function listUnshift(string $key, string $value): ?int
+    {
+        if ($size = $this->getInstance()->lPush($key, $value))
+        {
+            return $size;
+        }
+
+        return null;
+    }
+
+    /**
+     * @param string $key
+     *
+     * @return null|string
+     */
+    public function listShift(string $key): ?string
+    {
+        if ($value = $this->getInstance()->lPop($key))
+        {
+            return $value;
+        }
+
+        return null;
+    }
+
+    /**
+     * @param string $key
+     * @param string $value
+     *
+     * @return int|null
+     */
+    public function listPush(string $key, string $value): ?int
+    {
+        if ($size = $this->getInstance()->rPush($key, $value))
+        {
+            return $size;
+        }
+
+        return null;
+    }
+
+    /**
+     * @param string $key
+     *
+     * @return null|string
+     */
+    public function listPop(string $key): ?string
+    {
+        if ($value = $this->getInstance()->rPop($key))
+        {
+            return $value;
+        }
+
+        return null;
+    }
+
+    /**
+     * @param string $key
+     *
+     * @return int|null
+     */
+    public function listLength(string $key): ?int
+    {
+        if ($size = $this->getInstance()->lLen($key))
+        {
+            return $size;
+        }
+
+        return null;
+    }
+
+    /**
+     * @param string $key
+     * @param int $index
+     *
+     * @return null|string
+     */
+    public function listGet(string $key, int $index): ?string
+    {
+        if ($value = $this->getInstance()->lIndex($key, $index))
+        {
+            return $value;
+        }
+
+        return null;
+    }
+
+    /**
+     * @param string $key
+     * @param string $value
+     * @param int $index
+     *
+     * @return bool
+     */
+    public function listSet(string $key, string $value, int $index): bool
+    {
+        return $this->getInstance()->lSet($key, $index, $value);
+    }
+
+    /**
+     * @param string $key
+     * @param int $startIndex
+     * @param int $endIndex
+     *
+     * @return array
+     */
+    public function listRange(string $key, int $startIndex, int $endIndex): array
+    {
+        return $this->getInstance()->lRange($key, $startIndex, $endIndex);
+    }
+
+    /**
+     * @param string $key
+     *
+     * @return array
+     */
+    public function listValues(string $key): array
+    {
+        return $this->getInstance()->lRange($key, 0, -1);
+    }
+
+    /**
      * @return \Redis
      */
     private function getInstance(): \Redis

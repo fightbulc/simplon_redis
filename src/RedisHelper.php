@@ -10,12 +10,12 @@ namespace Simplon\Redis;
 class RedisHelper
 {
     /**
-     * @param $namespace
+     * @param string $namespace
      * @param array $params
      *
      * @return string
      */
-    public static function renderNamespace($namespace, array $params = [])
+    public static function renderNamespace(string $namespace, array $params = []): string
     {
         foreach ($params as $key => $val)
         {
@@ -30,7 +30,7 @@ class RedisHelper
      *
      * @return int
      */
-    public static function ttlMinutesToSeconds($ttl)
+    public static function ttlMinutesToSeconds(int $ttl): int
     {
         return $ttl * 60;
     }
@@ -40,7 +40,7 @@ class RedisHelper
      *
      * @return int
      */
-    public static function ttlHoursToSeconds($ttl)
+    public static function ttlHoursToSeconds(int $ttl): int
     {
         return $ttl * 60 * 60;
     }
@@ -50,7 +50,7 @@ class RedisHelper
      *
      * @return int
      */
-    public static function ttlDaysToSeconds($ttl)
+    public static function ttlDaysToSeconds(int $ttl): int
     {
         return $ttl * 60 * 60 * 24;
     }
