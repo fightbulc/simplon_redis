@@ -212,7 +212,7 @@ class Redis
      *
      * @return int|null
      */
-    public function listLength(string $key): ?int
+    public function listSize(string $key): ?int
     {
         if ($size = $this->getInstance()->lLen($key))
         {
