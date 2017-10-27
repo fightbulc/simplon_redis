@@ -2,11 +2,6 @@
 
 namespace Simplon\Redis;
 
-/**
- * Redis
- * @package Simplon\Redis
- * @author  Tino Ehrich (tino@bigpun.me)
- */
 class Redis
 {
     /**
@@ -270,6 +265,148 @@ class Redis
     public function listValues(string $key): array
     {
         return $this->getInstance()->lRange($key, 0, -1);
+    }
+
+    /**
+     * @param string $key
+     * @param int $offset
+     * @param int $value
+     *
+     * @return int
+     */
+    public function bitSet(string $key, int $offset, int $value = 1): int
+    {
+        return $this->getInstance()->setBit($key, $offset, $value);
+    }
+
+    /**
+     * @param string $key
+     * @param int $offset
+     *
+     * @return int
+     */
+    public function bitGet(string $key, int $offset): int
+    {
+        return $this->getInstance()->getBit($key, $offset);
+    }
+
+    /**
+     * @param string $key
+     *
+     * @return int
+     */
+    public function bitCount(string $key): int
+    {
+        return $this->getInstance()->bitCount($key);
+    }
+
+    /**
+     * @param string $key
+     * @param string $field
+     *
+     * @return int
+     */
+    public function hashDel(string $key, string $field): int
+    {
+        return $this->getInstance()->hDel($key, $field);
+    }
+
+    /**
+     * @param string $key
+     * @param string $field
+     *
+     * @return int
+     */
+    public function hashExists(string $key, string $field): int
+    {
+        return $this->getInstance()->hExists($key, $field);
+    }
+
+    /**
+     * @param string $key
+     * @param string $field
+     *
+     * @return string
+     */
+    public function hashGet(string $key, string $field): string
+    {
+        return $this->getInstance()->hGet($key, $field);
+    }
+
+    /**
+     * @param string $key
+     * @param string $field
+     * @param string $value
+     *
+     * @return int
+     */
+    public function hashSet(string $key, string $field, string $value): int
+    {
+        return $this->getInstance()->hSet($key, $field, $value);
+    }
+
+    /**
+     * @param string $key
+     * @param string $field
+     * @param int $value
+     *
+     * @return int
+     */
+    public function hashIncrBy(string $key, string $field, int $value): int
+    {
+        return $this->getInstance()->hIncrBy($key, $field, $value);
+    }
+
+    /**
+     * @param string $key
+     * @param array $keys
+     *
+     * @return array
+     */
+    public function hashMultiGet(string $key, array $keys): array
+    {
+        return $this->getInstance()->hMGet($key, $keys);
+    }
+
+    /**
+     * @param string $key
+     * @param array $values
+     *
+     * @return bool
+     */
+    public function hashMultiSet(string $key, array $values): bool
+    {
+        return $this->getInstance()->hMset($key, $values);
+    }
+
+    /**
+     * @param string $key
+     *
+     * @return int
+     */
+    public function hashLength(string $key): int
+    {
+        return $this->getInstance()->hLen($key);
+    }
+
+    /**
+     * @param string $key
+     *
+     * @return array
+     */
+    public function hashKeys(string $key): array
+    {
+        return $this->getInstance()->hKeys($key);
+    }
+
+    /**
+     * @param string $key
+     *
+     * @return array
+     */
+    public function hashValues(string $key): array
+    {
+        return $this->getInstance()->hVals($key);
     }
 
     /**

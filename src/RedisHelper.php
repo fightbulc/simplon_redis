@@ -2,11 +2,6 @@
 
 namespace Simplon\Redis;
 
-/**
- * RedisHelper
- * @package Simplon\Redis
- * @author Tino Ehrich (tino@bigpun.me)
- */
 class RedisHelper
 {
     /**
