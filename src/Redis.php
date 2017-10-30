@@ -143,9 +143,9 @@ class Redis
     /**
      * @param string $key
      *
-     * @return bool
+     * @return int
      */
-    public function keyIncr(string $key): bool
+    public function keyIncr(string $key): int
     {
         return $this->getInstance()->incr($key);
     }
@@ -153,9 +153,9 @@ class Redis
     /**
      * @param string $key
      *
-     * @return bool
+     * @return int
      */
-    public function keyDecr(string $key): bool
+    public function keyDecr(string $key): int
     {
         return $this->getInstance()->decr($key);
     }
@@ -164,9 +164,9 @@ class Redis
      * @param string $key
      * @param int $value
      *
-     * @return bool
+     * @return int
      */
-    public function keyIncrBy(string $key, int $value): bool
+    public function keyIncrBy(string $key, int $value): int
     {
         return $this->getInstance()->incrBy($key, $value);
     }
@@ -175,9 +175,9 @@ class Redis
      * @param string $key
      * @param int $value
      *
-     * @return bool
+     * @return int
      */
-    public function keyDecrBy(string $key, int $value): bool
+    public function keyDecrBy(string $key, int $value): int
     {
         return $this->getInstance()->decrBy($key, $value);
     }
