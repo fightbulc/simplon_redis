@@ -142,6 +142,48 @@ class Redis
 
     /**
      * @param string $key
+     *
+     * @return bool
+     */
+    public function keyIncr(string $key): bool
+    {
+        return $this->getInstance()->incr($key);
+    }
+
+    /**
+     * @param string $key
+     *
+     * @return bool
+     */
+    public function keyDecr(string $key): bool
+    {
+        return $this->getInstance()->decr($key);
+    }
+
+    /**
+     * @param string $key
+     * @param int $value
+     *
+     * @return bool
+     */
+    public function keyIncrBy(string $key, int $value): bool
+    {
+        return $this->getInstance()->incrBy($key, $value);
+    }
+
+    /**
+     * @param string $key
+     * @param int $value
+     *
+     * @return bool
+     */
+    public function keyDecrBy(string $key, int $value): bool
+    {
+        return $this->getInstance()->decrBy($key, $value);
+    }
+
+    /**
+     * @param string $key
      * @param string $value
      *
      * @return int|null
